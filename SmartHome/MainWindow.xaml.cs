@@ -94,7 +94,9 @@ namespace SmartHome
 
       NotificationCenter_Visibility = "Hidden";
       AppLauncher_Visibility = "Hidden";
+      AppSelectedIndex = -1;
 
+      AppLauncherControl.Instance.AddApplication(new SmartHome.SmartHome_Tile());
       AppLauncherControl.Instance.AddApplication(new SmartHome.TV.Views.TV_Tile(), new SmartHome.TV.Views.TV_Content());
       AppLauncherControl.Instance.AddApplication(new SmartHome.Control.Views.Control_Tile(), new SmartHome.Control.Views.Control_Content());
       AppLauncherControl.Instance.AddApplication(new SmartHome.Movies.Views.Movies_Tile(), new SmartHome.Movies.Views.Movies_Content());

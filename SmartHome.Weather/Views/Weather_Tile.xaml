@@ -3,8 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d"  Background="Blue" >
-    <Grid>
-        <Label Content="WEATHER TILE" Foreground="White"/>
+             mc:Ignorable="d"  Background="Blue"  xmlns:local="clr-namespace:SmartHome.Weather.ViewModels">
+    <UserControl.DataContext>
+        <local:Weather_TileVM/>
+    </UserControl.DataContext>
+    <Grid>        
+        <StackPanel>
+            <Label Content="WEATHER TILE" Foreground="White"/>
+            <Label Content="{Binding CurrentTemp}" Foreground="White" />
+        </StackPanel>
     </Grid>
 </UserControl>

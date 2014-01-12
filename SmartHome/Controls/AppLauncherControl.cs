@@ -53,7 +53,13 @@ namespace SmartHome.Controls
       appTiles.Add(tile);
       appContent.Add(content);      
     }
+    public void AddApplication(UserControl tile)
+    {
+      if (!init)
+        Initialize();
 
+      appTiles.Add(tile);
+    }
     #endregion
   }
 }

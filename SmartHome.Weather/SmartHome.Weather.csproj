@@ -43,6 +43,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ViewModels\Weather_TileVM.cs" />
     <Compile Include="Views\Weather_Content.xaml.cs">
       <DependentUpon>Weather_Content.xaml</DependentUpon>
     </Compile>
@@ -55,7 +56,6 @@
   <ItemGroup>
     <Folder Include="Controls\" />
     <Folder Include="Models\" />
-    <Folder Include="ViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="Views\Weather_Content.xaml">
@@ -66,6 +66,9 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Images\Up.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
