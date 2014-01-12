@@ -1,0 +1,50 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Express 2012 for Windows Desktop
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartHome", "SmartHome\SmartHome.csproj", "{B8840590-E2FC-4053-9EFF-91125F051287}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartHome.Netflix", "SmartHome.Netflix\SmartHome.Netflix.csproj", "{0FD61303-0624-4F4A-BF1F-EA81AF976BEF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartHome.Weather", "SmartHome.Weather\SmartHome.Weather.csproj", "{244FEF9C-34B1-4929-8791-16C6C52D6C75}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartHome.Control", "SmartHome.Control\SmartHome.Control.csproj", "{F61C5C94-AB6A-4F21-999E-C2438CDCA60A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartHome.TV", "SmartHome.TV\SmartHome.TV.csproj", "{15DD8BBB-E99B-4C80-8476-5A1F05EB4154}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartHome.Movies", "SmartHome.Movies\SmartHome.Movies.csproj", "{3F63328C-9F82-4270-8AD5-2EBBECEA1AD1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B8840590-E2FC-4053-9EFF-91125F051287}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8840590-E2FC-4053-9EFF-91125F051287}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8840590-E2FC-4053-9EFF-91125F051287}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8840590-E2FC-4053-9EFF-91125F051287}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0FD61303-0624-4F4A-BF1F-EA81AF976BEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0FD61303-0624-4F4A-BF1F-EA81AF976BEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0FD61303-0624-4F4A-BF1F-EA81AF976BEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0FD61303-0624-4F4A-BF1F-EA81AF976BEF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{244FEF9C-34B1-4929-8791-16C6C52D6C75}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{244FEF9C-34B1-4929-8791-16C6C52D6C75}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{244FEF9C-34B1-4929-8791-16C6C52D6C75}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{244FEF9C-34B1-4929-8791-16C6C52D6C75}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F61C5C94-AB6A-4F21-999E-C2438CDCA60A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F61C5C94-AB6A-4F21-999E-C2438CDCA60A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F61C5C94-AB6A-4F21-999E-C2438CDCA60A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F61C5C94-AB6A-4F21-999E-C2438CDCA60A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15DD8BBB-E99B-4C80-8476-5A1F05EB4154}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15DD8BBB-E99B-4C80-8476-5A1F05EB4154}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15DD8BBB-E99B-4C80-8476-5A1F05EB4154}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15DD8BBB-E99B-4C80-8476-5A1F05EB4154}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F63328C-9F82-4270-8AD5-2EBBECEA1AD1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F63328C-9F82-4270-8AD5-2EBBECEA1AD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F63328C-9F82-4270-8AD5-2EBBECEA1AD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F63328C-9F82-4270-8AD5-2EBBECEA1AD1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
