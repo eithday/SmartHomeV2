@@ -89,12 +89,13 @@ namespace SmartHome
     {
       //Procedure:       
       //1) Initialize or set any Variables
-      //2) Add each project as an applicatioin into AppLauncher
+      //2) Add each project as an applicatioin into AppLauncher with associated Tile and Content
       //3) Load TV as startup Application
 
+      Application.Current.MainWindow.PreviewKeyDown += shell_KeyDown; 
       NotificationCenter_Visibility = "Hidden";
       AppLauncher_Visibility = "Hidden";
-      AppSelectedIndex = -1;
+      AppLauncher.SelectedIndex = -1;
 
       AppLauncherControl.Instance.AddApplication(new SmartHome.SmartHome_Tile());
       AppLauncherControl.Instance.AddApplication(new SmartHome.TV.Views.TV_Tile(), new SmartHome.TV.Views.TV_Content());
@@ -104,8 +105,13 @@ namespace SmartHome
       AppLauncherControl.Instance.AddApplication(new SmartHome.Weather.Views.Weather_Tile(), new SmartHome.Weather.Views.Weather_Content());
 
       LoadedContent.Content = LoadedContentControl.Instance.LoadApplication(AppLauncherControl.AppContent[0]);
-      AppLauncher.ItemsSource = AppLauncherControl.AppTiles;
-      Application.Current.MainWindow.PreviewKeyDown += shell_KeyDown;      
+      AppLauncher.ItemsSource = AppLauncherControl.AppTiles;     
+    }
+
+    private void loadSelectedApp()
+    {
+      if (AppLauncher.SelectedIndex > 0)
+      LoadedContent.Content = LoadedContentControl.Instance.LoadApplication(AppLauncherControl.AppContent[AppLauncher.SelectedIndex-1]);
     }
 
     private void shell_KeyDown(object sender, KeyEventArgs e)
@@ -114,10 +120,21 @@ namespace SmartHome
       switch (e.Key)
       {
         case Key.Right:
-          AppSelectedIndex++;        
+          if (AppLauncher_Visibility == "Visible")
+          {
+            if (AppSelectedIndex < AppLauncherControl.AppContent.Count)
+              AppSelectedIndex++;
+            if (AppSelectedIndex <= 0)
+
+              AppSelectedIndex = 1;
+          }
           break;
         case Key.Left:
-          AppSelectedIndex--;
+          if (AppLauncher_Visibility == "Visible")
+          {
+            if (AppSelectedIndex > 1)
+              AppSelectedIndex--;
+          }
           break;
         case Key.Space:
           if (AppLauncher_Visibility == "Visible")
@@ -125,7 +142,11 @@ namespace SmartHome
           else
             AppLauncher_Visibility = "Visible";
           break;
+        case Key.Enter:
+          if (AppLauncher_Visibility == "Visible")
+            loadSelectedApp();
+          break;
       }      
-    }    
+    }
   }
 }

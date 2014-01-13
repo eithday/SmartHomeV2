@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +24,11 @@ namespace SmartHome.Control.Views
     public Control_Tile()
     {
       InitializeComponent();
+      SetImageSources();
+    }    
+    private void SetImageSources()
+    {
+      AutoImg.Source = new ImageSourceConverter().ConvertFromString(Directory.GetCurrentDirectory() + @"\Images\Automation.png") as ImageSource;
     }
   }
 }

@@ -3,8 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" Background="Cyan" >
-    <Grid >
-        <Label Content="Home Control" Foreground="Blue"/>
-    </Grid>
+             mc:Ignorable="d" Background="Navy" >
+    <StackPanel >
+        <Label Content="Home" FontSize="15" Foreground="White" />
+        <Label Content="Control" FontSize="20" Foreground="White" Margin="0,0,0,20"/>
+        <Image Name="AutoImg" Width="100" Height="100"/>
+    </StackPanel>
 </UserControl>

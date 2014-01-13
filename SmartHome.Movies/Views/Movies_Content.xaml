@@ -3,9 +3,76 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             mc:Ignorable="d"  xmlns:local="clr-namespace:SmartHome.Movies.ViewModels">
+    <UserControl.DataContext>
+        <local:Movies_ContentVM/>
+    </UserControl.DataContext>
     <Grid>
-            
+        <ListView Name="LocalCatalogItemsControl" ItemsSource="{Binding MovieCollection}" Focusable="False"  SelectedIndex="{Binding GenreSelectedIndex, Mode=TwoWay}"
+                   ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.CanContentScroll="True" >
+            <ListView.Resources>
+                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Transparent" />
+                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="Transparent" />
+                <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="Transparent" />
+            </ListView.Resources>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Grid>                        
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50"/>
+                            <RowDefinition Height="200"/>
+                        </Grid.RowDefinitions>
+                        <Label Content="{Binding Path=ParentCategory}" FontSize="30" Grid.Row="0"/>
+                        <ListView Grid.Row="1" Focusable="False" SelectedIndex="{Binding MovieSelectedIndex, Mode=TwoWay}"
+                                  ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.CanContentScroll="True"
+                            ItemsSource="{Binding IsAsync=True, RelativeSource={x:Static RelativeSource.Self}, Path=DataContext}" Background="Transparent">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Image Source="{Binding Path= LargeCoverArt}" />
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <VirtualizingStackPanel Orientation="Horizontal" />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemContainerStyle>
+                                <Style TargetType="ListViewItem">
+                                    <Style.Triggers>
+                                        <Trigger Property="IsSelected" Value="False">
+                                            <Setter Property="Control.RenderTransform">
+                                                <Setter.Value>
+                                                    <ScaleTransform ScaleX="1" ScaleY="1"/>                                                    
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Trigger>
+                                        <Trigger Property="IsSelected" Value="True">
+                                            <Setter Property="Control.RenderTransform">
+                                                <Setter.Value>
+                                                    <ScaleTransform  ScaleX="1.1" ScaleY="1.1"/>
+                                                </Setter.Value>
+                                            </Setter>
+                                            <Setter Property="BorderThickness" Value="0"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                    <Setter Property="Control.Width" Value="100"/>
+                                    <Setter Property="Control.Height" Value="100"/>
+                                    <Setter Property="Control.Padding" Value="0"/>
+                                    <Setter Property="Control.Margin" Value="2,1,2,1"/>
+                                    <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+                                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                    <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+                                </Style>
+                            </ItemsControl.ItemContainerStyle>
+                        </ListView>
+                    </Grid>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <VirtualizingStackPanel />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>            
+        </ListView>
     </Grid>
 </UserControl>

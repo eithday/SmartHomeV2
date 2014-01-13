@@ -3,8 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" Background="Purple">
-    <Grid>
-        <Label Content="Movies" Foreground="White"/>
-    </Grid>
+             mc:Ignorable="d" Background="CornflowerBlue">
+    <StackPanel>
+        <Label Content="MOVIES" FontSize="30" Foreground="White" Margin="0,0,0,20"/>
+        <Image Name="MovieImg" Width="100" Height="100"/>        
+    </StackPanel>
 </UserControl>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +24,12 @@ namespace SmartHome.Movies.Views
     public Movies_Tile()
     {
       InitializeComponent();
+      SetImageSources();
+    }
+
+    private void SetImageSources()
+    {
+      MovieImg.Source = new ImageSourceConverter().ConvertFromString(Directory.GetCurrentDirectory() + @"\Images\Movies.gif") as ImageSource; 
     }
   }
 }

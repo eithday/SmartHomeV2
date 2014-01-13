@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +24,13 @@ namespace SmartHome.Netflix.Views
     public Netflix_Tile()
     {
       InitializeComponent();
+      SetImageSources();
     }
+
+    private void SetImageSources()
+    {
+      NetImg.Source = new ImageSourceConverter().ConvertFromString(Directory.GetCurrentDirectory() + @"\Images\netflix.png") as ImageSource; ;
+    }
+   
   }
 }

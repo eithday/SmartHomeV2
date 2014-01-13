@@ -13,15 +13,15 @@
                         Visibility="{Binding NotificationCenter_Visibility}" Height="300" VerticalAlignment="Top"/>
         <ContentControl Name="LoadedContent" Panel.ZIndex="0"/>
         <ListView Name="AppLauncher" Panel.ZIndex="1" ItemsSource="{Binding Source={x:Static local:AppLauncherControl.AppTiles}}"
-                        Visibility="{Binding AppLauncher_Visibility}" Height="250" VerticalAlignment="Bottom"
-                        SelectedIndex="{Binding AppSelectedIndex, Mode=TwoWay}" BorderThickness="0" Focusable="False">                        
+                        Visibility="{Binding AppLauncher_Visibility}" Height="250" VerticalAlignment="Bottom" Background="Transparent" 
+                        SelectedIndex="{Binding AppSelectedIndex, Mode=TwoWay}" BorderThickness="0" Focusable="False">            
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <VirtualizingStackPanel Orientation="Horizontal" />
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemContainerStyle>
-                <Style TargetType="ListViewItem">     
+                <Style TargetType="ListViewItem">                   
                     <Style.Triggers>
                         <Trigger Property="IsSelected" Value="False">
                             <Setter Property="Control.RenderTransform">
@@ -45,7 +45,7 @@
                             <Setter Property="BorderThickness" Value="0"/>
                         </Trigger>
                     </Style.Triggers>
-                    <Setter Property="Control.Width" Value="150"/>  
+                    <Setter Property="Control.Width" Value="180"/>  
                     <Setter Property="Control.Height" Value="220"/>
                     <Setter Property="Control.Padding" Value="0"/>
                     <Setter Property="Control.Margin" Value="2,1,2,1"/>

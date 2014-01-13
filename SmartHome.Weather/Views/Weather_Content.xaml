@@ -3,9 +3,72 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             mc:Ignorable="d" xmlns:local="clr-namespace:SmartHome.Weather.ViewModels">
+    <UserControl.DataContext>
+        <local:Weather_ContentVM/>
+    </UserControl.DataContext>
     <Grid>
-            
+        <Grid.Background>
+            <ImageBrush ImageSource="{Binding CurrentWeatherData.Background}"/>
+        </Grid.Background>
+        <StackPanel Orientation="Horizontal">
+            <Label Content="{Binding CurrentWeatherData.City}" FontSize="40" Foreground="White"/>
+            <Label Content=", "  FontSize="40"/>
+            <Label Content="{Binding CurrentWeatherData.Region}" FontSize="40" Foreground="White"/>
+        </StackPanel>
+        <DockPanel VerticalAlignment="Bottom" Margin="5,0,5,50" Height="300">
+            <StackPanel DockPanel.Dock="Left" Margin="5,0,5,0" Width="200" >
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="{Binding CurrentWeatherData.Temp}" FontSize="40" Foreground="White" Margin="10,10,0,0"/>
+                    <Label Content=" Deg F" FontSize="20" Foreground="White" Margin="0,10,0,0"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="10,2,0,0">
+                    <Label Name="High" Content="{Binding CurrentWeatherData.High}" Foreground="White" FontSize="15"/>
+                    <Label Content=" / "  FontSize="15" Foreground="White"/>
+                    <Label Name="Low" Content="{Binding CurrentWeatherData.Low}" Foreground="White" FontSize="15"/>
+                </StackPanel>
+                <Label Name="ShortDescription" Content="{Binding CurrentWeatherData.Text}" FontSize="30" Foreground="White" Margin="10,2,0,0"/>                
+            </StackPanel>
+            <ListView DockPanel.Dock="Right" ItemsSource="{Binding ForecastWeatherdata}" Background="Transparent"
+                      SelectedIndex="{Binding ForecastSelectedIndex, Mode=TwoWay}" BorderThickness="0" Focusable="False">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Background="Navy">                
+                            <Label Name="DayOfWeek" Content="{Binding Day}" FontSize="20" Foreground="White"/>
+                            <Image Name="TempImage" Source="{Binding Code}" Width="40" Height="40"/>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Name="High" Content="{Binding High}" FontSize="15" Foreground="White"/>
+                                <Label Content=" / "  Foreground="White" FontSize="15"/>
+                                <Label Name="Low" Content="{Binding Low}" FontSize="15" Foreground="White"/>
+                            </StackPanel>
+                            <Label Name="ShortDescription" Content="{Binding Text}" FontSize="15" Foreground="White"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel Orientation="Horizontal"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Style.Triggers>
+                            <Trigger Property="IsSelected" Value="False">                               
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="True">                               
+                                <Setter Property="BorderThickness" Value="0"/>
+                            </Trigger>
+                        </Style.Triggers>
+                        <Setter Property="Control.Width" Value="200"/>
+                        <Setter Property="Control.Height" Value="250"/>
+                        <Setter Property="Control.Padding" Value="0"/>
+                        <Setter Property="Control.Margin" Value="2,1,2,1"/>
+                        <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+                    </Style>
+                </ItemsControl.ItemContainerStyle>
+            </ListView>
+        </DockPanel>
     </Grid>
 </UserControl>
