@@ -116,7 +116,15 @@ namespace SmartHome
 
     private void shell_KeyDown(object sender, KeyEventArgs e)
     {
+      //Send Global keypress for anyone that always needs it
       Messenger.Default.Send(e, "globalKeyPress");
+      //Send keypress only to LoadedContent and only if applauncher is hidden
+      if (AppLauncher_Visibility == "Hidden")
+      {
+        string Loaded = LoadedContent.Content.ToString();
+        Messenger.Default.Send(e, LoadedContent.Content.ToString());
+      }      
+      //Local Keypress Handling
       switch (e.Key)
       {
         case Key.Right:

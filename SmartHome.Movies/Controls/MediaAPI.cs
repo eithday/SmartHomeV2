@@ -16,15 +16,17 @@ namespace SmartHome.Movies.Controls
   {
     private ApiClient apiClient;
 
-    private void setApiReference()
+    private async Task setApiReference()
     {
-      Thread.Sleep(1000);
-      apiClient = BaseMediaBrowserAPI.Instance.publicAPIClient;
+      while (apiClient == null)
+      {
+        apiClient = BaseMediaBrowserAPI.Instance.publicAPIClient;
+      }
     }
 
     public async Task<List<MediaModel>> RefreshMediaList(string searchRequest)
     {
-      setApiReference();
+      await setApiReference();
       List<MediaModel> LMM = new List<MediaModel>();
       MediaObjectMap MOM = new MediaObjectMap();
       string[] genreSearch = new string[1];

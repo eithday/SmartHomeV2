@@ -8,6 +8,8 @@ using SmartHome.Movies.Models;
 using SmartHome.Movies.Controls;
 using MediaBrowser.ApiInteraction;
 using System.Collections.ObjectModel;
+using GalaSoft.MvvmLight.Messaging;
+using System.Windows.Input;
 
 namespace SmartHome.Movies.ViewModels
 {
@@ -15,14 +17,57 @@ namespace SmartHome.Movies.ViewModels
   {
     #region Variables
     private List<string> genreList;
-    public ObservableCollection<List<MediaModel>> MovieCollection {get; set;}      
+    public ObservableCollection<List<MediaModel>> MovieCollection {get; set;}
+    public int GenreSelectedIndex
+    {
+      get { return genreSelectedIndex; }
+      set
+      {
+        genreSelectedIndex = value;
+        NotifyPropertyChanged("GenreSelectedIndex");
+      }
+    } int genreSelectedIndex;
+    public static int MovieSelectedIndex
+    {
+      get { return movieSelectedIndex; }
+      set
+      {
+        movieSelectedIndex = value;
+      }
+    } static int movieSelectedIndex;
     #endregion
 
     public Movies_ContentVM()
     {
+      Messenger.Default.Register<KeyEventArgs>(this, "SmartHome.Movies.Views.Movies_Content", shell_keydown);
       SetGenreList();
       MovieCollection = new ObservableCollection<List<MediaModel>>();
       RefreshFullCatalog();
+      GenreSelectedIndex = 0;
+      MovieSelectedIndex = 0;
+    }
+
+    private void shell_keydown(KeyEventArgs e)
+    {
+      switch (e.Key)
+      {
+        case Key.Right:
+          MovieSelectedIndex++;
+          break;
+        case Key.Left:
+          if (MovieSelectedIndex > 0)
+          MovieSelectedIndex--;
+          break;
+        case Key.Up:
+          if (GenreSelectedIndex > 0)          
+            GenreSelectedIndex--;          
+          break;
+        case Key.Down:
+          if (GenreSelectedIndex < MovieCollection.Count() - 1)         
+            GenreSelectedIndex++;          
+          break;
+      }
+      Messenger.Default.Send(GenreSelectedIndex, "Movies_Content_SetItemFocus");
     }
 
     #region Data Access/Update
