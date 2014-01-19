@@ -17,16 +17,18 @@
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
-            <StackPanel Grid.Column="0">
-                <Label Content="Selected Title Info" Foreground="White"/>
+            <StackPanel Grid.Column="0" Margin="10,0,0,0">
+                <Label Content="{Binding NFStatus}" Foreground="White" FontSize="40"/>
+                <TextBlock Text="{Binding NFSelectedTitle}" Foreground="White" FontSize="35" TextWrapping="Wrap"/>
+                <TextBlock Text="{Binding NFSelectedDescription}" Foreground="White" FontSize="15" TextWrapping="Wrap" Background="Transparent"/>
             </StackPanel>
             <Grid Grid.Column="1" >
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <Image Panel.ZIndex="1" Stretch="UniformToFill" Source="http://cdn-0.nflximg.com/en_US/pages/billboard/billboard_licensed_vignette_nobottom.png"/>
+                <Image Panel.ZIndex="1" Stretch="Fill" Source="http://cdn-0.nflximg.com/en_US/pages/billboard/billboard_licensed_vignette_nobottom.png"/>
                 <Image Panel.ZIndex="0" Source="{Binding NFSelectedImageSource,IsAsync=True}" Stretch="Uniform"/>
             </Grid>
         </Grid>
@@ -84,7 +86,7 @@
                                     <Setter Property="Control.Width" Value="250"/>
                                     <Setter Property="Control.Height" Value="150"/>
                                     <Setter Property="Control.Padding" Value="0"/>
-                                    <Setter Property="Control.Margin" Value="2,1,2,1"/>
+                                    <Setter Property="Control.Margin" Value="4,1,4,1"/>
                                     <Setter Property="FocusVisualStyle" Value="{x:Null}" />
                                 </Style>
                             </ItemsControl.ItemContainerStyle>

@@ -1,8 +1,10 @@
-﻿using System;
+﻿using SmartHome.Netflix.Controls;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Xml.Linq;
 
 namespace SmartHome.Netflix.Models
@@ -11,6 +13,7 @@ namespace SmartHome.Netflix.Models
   {
     List<CatalogTitleModel> CTList;
     CatalogTitleModel CT;
+    NetflixAuth _auth = new NetflixAuth("accessInfo.xml");
 
     public List<CatalogTitleModel> MapObject(List<XElement> el)
     {
@@ -28,7 +31,7 @@ namespace SmartHome.Netflix.Models
       return CTList;
     }
 
-    private void parseItem(XElement E)
+    private async void parseItem(XElement E)
     {
       foreach (var i in E.Elements())
       {
@@ -36,11 +39,11 @@ namespace SmartHome.Netflix.Models
         {
           case "id":
             initializeCatalog();
-            CT.Id = i.Value;
+            CT.Id = i.Value;            
             CT.HDBoxArt = "http://cdn-1.nflximg.com/us/boxshots/ghd/" + i.Value.Substring(i.Value.Count()-8,8) + ".jpg";           
             break;
           case "link":
-            parseLink(i);
+            await parseLink(i);
             break;
           case "box_art":
             CT.SmallCoverArt = i.Attribute("small").Value;
@@ -64,8 +67,27 @@ namespace SmartHome.Netflix.Models
       }
     }
 
-    private void parseLink(XElement E)
+    private async Task parseLink(XElement E)
     {
+      if (E.ToString().Contains("synopsis"))
+      {
+        try
+        {
+          NetflixRequest req = new NetflixRequest(NetflixConfig.ConsumerKey, NetflixConfig.ConsumerSecret,
+                                                    _auth.Token, _auth.Secret);
+          string href = E.FirstAttribute.ToString().Remove(0, 6);
+          href = href.Remove(href.Length - 1, 1);
+          string result = req.ProtectedRequest(href);
+          int endIndex = result.IndexOf(']');
+          int startIndex = result.LastIndexOf('[') + 1;
+          CT.Synopsis = result.Substring(startIndex, endIndex - startIndex);
+        
+        }
+        catch (Exception ex)
+        {
+
+        }
+      }
       //Add Later if necessary links included links to synopsis and similars etc...
     }
 

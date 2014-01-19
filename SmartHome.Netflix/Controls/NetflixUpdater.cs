@@ -31,6 +31,9 @@ namespace SmartHome.Netflix.Controls
         string filePath = "c:\\temp\\netflixStreamingCatalog.xml";       
         if (!File.Exists(filePath) || File.GetCreationTime(filePath) < DateTime.Now.AddDays(-7))
         {
+          if (File.Exists(filePath))
+            File.Delete(filePath);
+          Messenger.Default.Send("Updating", "LoadStatus");
           await Task.Run(() =>  request.CatalogRequest(requestUrl, "GET"));
         }
         Messenger.Default.Send("Successful", "LoadStatus");

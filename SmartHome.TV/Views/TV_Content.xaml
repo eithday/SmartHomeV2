@@ -2,9 +2,22 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" >
-    <StackPanel Height="300" Width="300">
-        <Label Content="Live TV"/>
-    </StackPanel>
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:SmartHome.TV.ViewModels"
+             mc:Ignorable="d" Loaded="UserControl_Loaded_1">
+    <UserControl.DataContext>
+        <local:TV_ContentVM/>
+    </UserControl.DataContext>
+    <!--Margin Order is left, top, right, bottom-->
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <!-- ADD THIS GRID IF A BACKGROUND IS DESIRED WHILE TV LOADS
+            <Grid Panel.ZIndex="0"/>        -->
+        <MediaElement Name="TVME" LoadedBehavior="Play" Panel.ZIndex="1" Stretch="Fill" Margin="0,0,0,-150" />
+
+        <!--THIS IS WHERE THE EPG AND PROGRAM INFORMATION WILL BE DISPLAYED-->
+        <ContentControl Name="TVCC" Panel.ZIndex="2" Visibility="{Binding ContentControl_Visibility}" Height="295" VerticalAlignment="Bottom"/>
+    </Grid>
 </UserControl>

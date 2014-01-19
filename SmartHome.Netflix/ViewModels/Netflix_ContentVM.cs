@@ -23,6 +23,33 @@ namespace SmartHome.Netflix.ViewModels
     private string currentSelectedItemID;
     private TMDbClient client;
     public ObservableCollection<List<CatalogTitleModel>> NFMovieCollection { get; set; }
+    public string NFStatus
+    {
+      get { return nfStatus; }
+      set
+      {
+        nfStatus = value;
+        NotifyPropertyChanged("NFStatus");
+      }
+    } string nfStatus;
+    public string NFSelectedTitle
+    {
+      get { return nfSelectedTitle; }
+      set
+      {
+        nfSelectedTitle = value;
+        NotifyPropertyChanged("NFSelectedTitle");
+      }
+    } string nfSelectedTitle;
+    public string NFSelectedDescription
+    {
+      get { return nfSelectedDescription; }
+      set
+      {
+        nfSelectedDescription = value;
+        NotifyPropertyChanged("NFSelectedDescription");
+      }
+    } string nfSelectedDescription;
     public string NFSelectedImageSource
     {
       get { return nfSelectedImageSource; }
@@ -59,17 +86,21 @@ namespace SmartHome.Netflix.ViewModels
       client = new TMDbClient("ecaa9ae8c8346269b53c80e2a61aa0ea");
       client.GetConfig();
       Messenger.Default.Register<string>(this, "LoadStatus", successfulLoad);
-      NetflixUpdater NFU = new NetflixUpdater(); //NetflixUpdater checks for xml file and loads or updates if older than 7 days
-      Messenger.Default.Register<KeyEventArgs>(this, "SmartHome.Netflix.Views.Netflix_Content", shell_keydown);
+      NetflixUpdater NFU = new NetflixUpdater(); //NetflixUpdater checks for xml file and loads or updates if older than 7 days      
     }
 
     private void successfulLoad(string status)
     {
       if (status == "Successful")
       {
+        Messenger.Default.Register<KeyEventArgs>(this, "SmartHome.Netflix.Views.Netflix_Content", shell_keydown);
         SetGenreList();
         NFMovieCollection = new ObservableCollection<List<CatalogTitleModel>>();
         RefreshFullCatalog();
+      }
+      if (status == "Updating")
+      {
+        NFStatus = "Updating Catalog";
       }
     }
 
@@ -92,6 +123,9 @@ namespace SmartHome.Netflix.ViewModels
           if (NFGenreSelectedIndex < NFMovieCollection.Count() -1)
           NFGenreSelectedIndex++;
           break;
+        case Key.Enter:
+          Play();
+          break;
       }
       Messenger.Default.Send(NFGenreSelectedIndex, "Netflix_Content_SetItemFocus");
       setSelectedImage();
@@ -100,13 +134,8 @@ namespace SmartHome.Netflix.ViewModels
     private void setSelectedImage()
     {
       NFSelectedImageSource = NFMovieCollection[nfgenreSelectedIndex][NFMovieSelectedIndex].HDBoxArt;
-      //SearchContainer<SearchMovie> movResults = client.SearchMovie(NFMovieCollection[nfgenreSelectedIndex][NFMovieSelectedIndex].Title, 1);
-      //if (movResults.Results.Count > 0)
-      //{
-      //  StringBuilder sb = new StringBuilder("https://image.tmdb.org/t/p/w185");
-      //  sb.Append(movResults.Results[0].PosterPath);
-      //  NFSelectedImageSource = sb.ToString();
-      //}
+      NFSelectedTitle = NFMovieCollection[nfgenreSelectedIndex][NFMovieSelectedIndex].Title;
+      NFSelectedDescription = NFMovieCollection[nfgenreSelectedIndex][NFMovieSelectedIndex].Synopsis;
     }
 
     #region Data Access/Update
@@ -140,7 +169,7 @@ namespace SmartHome.Netflix.ViewModels
     private void Play()
     {
       //NEED TO REPLACE CONFIG.GETFOLDER WITH THE NFPLAYER DIRECTORY AND AUTOPOPULATE ARGUMENTS VS FIXED ALSO PLACE NFPLAYER IN OUTPUT FOLDER    
-      string arguments = Constants.baseMovieUrl + currentSelectedItemID;
+      string arguments = Constants.baseMovieUrl + NFMovieCollection[NFGenreSelectedIndex][NFMovieSelectedIndex].Id;
       Process.Start(Environment.CurrentDirectory + "\\NfPlayer.exe", arguments);
     }
     #endregion

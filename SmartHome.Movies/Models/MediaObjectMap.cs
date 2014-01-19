@@ -23,12 +23,19 @@ namespace SmartHome.Movies.Models
         Quality = 100
       };
 
+      var backdropImage = new ImageOptions
+      {
+        ImageType = ImageType.Backdrop,
+        Quality = 100
+      };
+
       foreach (BaseItemDto item in items)
       {
         if (item.HasPrimaryImage)
         {
           initializeCatalog();
           MM.LargeCoverArt = client.GetImageUrl(item, imageoptions);
+          MM.BackDrop = client.GetImageUrl(item, backdropImage);
           MM.Title = item.Name;
           MM.Id = item.Path;
           MM.ReleaseYear = item.ProductionYear.ToString();

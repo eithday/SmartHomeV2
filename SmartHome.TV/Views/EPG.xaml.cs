@@ -1,5 +1,4 @@
-﻿using GalaSoft.MvvmLight.Messaging;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,18 +16,13 @@ using System.Windows.Shapes;
 namespace SmartHome.TV.Views
 {
   /// <summary>
-  /// Interaction logic for TV_Content.xaml
+  /// Interaction logic for EPG.xaml
   /// </summary>
-  public partial class TV_Content : UserControl
+  public partial class EPG : UserControl
   {
-    public TV_Content()
+    public EPG()
     {
-      InitializeComponent();
-    }
-    private void UserControl_Loaded_1(object sender, RoutedEventArgs e)
-    {      
-      Messenger.Default.Send(TVME, "Main");
-      Messenger.Default.Send(TVCC, "Content");
-    }
+      InitializeComponent();      
+    }   
   }
 }

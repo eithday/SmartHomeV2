@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GalaSoft.MvvmLight.Messaging;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,5 +25,16 @@ namespace SmartHome.Control.Views
     {
       InitializeComponent();
     }
+
+    private void PLCBTN_Click(object sender, RoutedEventArgs e)
+    {
+      Messenger.Default.Send("Set", "Control_Content_HMIBtn");
+    }
+
+    private void PLCBTN_Reset_Click(object sender, RoutedEventArgs e)
+    {
+      Messenger.Default.Send("ReSet", "Control_Content_HMIBtn");
+    }
+
   }
 }

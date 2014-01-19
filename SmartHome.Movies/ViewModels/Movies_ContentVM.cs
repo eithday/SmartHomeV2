@@ -18,6 +18,41 @@ namespace SmartHome.Movies.ViewModels
     #region Variables
     private List<string> genreList;
     public ObservableCollection<List<MediaModel>> MovieCollection {get; set;}
+    public static string MSource
+    {
+      get { return mSource; }
+      set
+      {
+        mSource = value;
+      }
+    } static string mSource;
+    public string MSelectedImageSource
+    {
+      get { return mSelectedImageSource; }
+      set
+      {
+        mSelectedImageSource = value;
+        NotifyPropertyChanged("MSelectedImageSource");
+      }
+    } string mSelectedImageSource;
+    public string MSelectedTitle
+    {
+      get { return mSelectedTitle; }
+      set
+      {
+        mSelectedTitle = value;
+        NotifyPropertyChanged("MSelectedTitle");
+      }
+    } string mSelectedTitle;
+    public string MSelectedDescription
+    {
+      get { return mSelectedDescription; }
+      set
+      {
+        mSelectedDescription = value;
+        NotifyPropertyChanged("MSelectedDescription");
+      }
+    } string mSelectedDescription;
     public int GenreSelectedIndex
     {
       get { return genreSelectedIndex; }
@@ -44,7 +79,7 @@ namespace SmartHome.Movies.ViewModels
       MovieCollection = new ObservableCollection<List<MediaModel>>();
       RefreshFullCatalog();
       GenreSelectedIndex = 0;
-      MovieSelectedIndex = 0;
+      MovieSelectedIndex = 0;     
     }
 
     private void shell_keydown(KeyEventArgs e)
@@ -66,8 +101,26 @@ namespace SmartHome.Movies.ViewModels
           if (GenreSelectedIndex < MovieCollection.Count() - 1)         
             GenreSelectedIndex++;          
           break;
+        case Key.Enter:
+          MSource = MovieCollection[GenreSelectedIndex][MovieSelectedIndex].Id;
+          Messenger.Default.Send("Play","Movies_Content_mediaControl");
+          break;
+        case Key.Escape:
+          Messenger.Default.Send("Stop", "Movies_Content_mediaControl");
+          break;
+        case Key.End:
+          Messenger.Default.Send("Next", "Movies_Content_mediaControl");
+          break;
       }
       Messenger.Default.Send(GenreSelectedIndex, "Movies_Content_SetItemFocus");
+      setSelectedImage();
+    }
+
+    private void setSelectedImage()
+    {
+      MSelectedImageSource = MovieCollection[GenreSelectedIndex][MovieSelectedIndex].BackDrop;
+      MSelectedTitle = MovieCollection[GenreSelectedIndex][MovieSelectedIndex].Title;
+      MSelectedDescription = MovieCollection[GenreSelectedIndex][MovieSelectedIndex].Synopsis;
     }
 
     #region Data Access/Update
@@ -86,6 +139,7 @@ namespace SmartHome.Movies.ViewModels
           MovieCollection.Add(tempCatalog);
         }
       }
+      setSelectedImage();
     }
 
     private void SetGenreList()
@@ -94,6 +148,6 @@ namespace SmartHome.Movies.ViewModels
       genreList = new List<string>(Genres);
     }
 
-    #endregion
+    #endregion   
   }
 }

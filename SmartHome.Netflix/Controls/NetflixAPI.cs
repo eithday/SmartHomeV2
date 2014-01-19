@@ -76,7 +76,7 @@ namespace SmartHome.Netflix.Controls
       QueueTitleObjectMap QTOM = new QueueTitleObjectMap();
       LinqToXmlQuery LXQ = new LinqToXmlQuery();
       var queryResults = LXQ.QueryData(xDoc);
-      CTM = QTOM.MapObject(queryResults);
+      CTM = await Task.Run(() => QTOM.MapObject(queryResults));
       return CTM;
     }
 

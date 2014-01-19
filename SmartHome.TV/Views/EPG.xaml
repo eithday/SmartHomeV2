@@ -1,0 +1,131 @@
+﻿<UserControl x:Class="SmartHome.TV.Views.EPG"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SmartHome.TV.ViewModels"
+             mc:Ignorable="d">
+    <UserControl.DataContext>
+        <local:EPG_VM/>
+    </UserControl.DataContext>
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                <LinearGradientBrush.GradientStops>
+                    <GradientStop Color="Transparent" Offset="0"/>
+                    <GradientStop Color="Blue" Offset="1"/>
+                </LinearGradientBrush.GradientStops>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <StackPanel  Margin="100,0,100,20">
+            <Grid Name="EPG_TimeLine">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width=".6*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Label Content="{Binding EPGTimeLine.Time1}" Grid.Column="0" Foreground="White" FontSize="15" />
+                <Label Content="{Binding EPGTimeLine.Time2}" Grid.Column="1" Foreground="White" FontSize="15" />
+                <Label Content="{Binding EPGTimeLine.Time3}" Grid.Column="2" Foreground="White" FontSize="15" />
+                <Label Content="{Binding EPGTimeLine.Time4}" Grid.Column="3" Foreground="White" FontSize="15" />
+                <Label Content="{Binding EPGTimeLine.Time5}" Grid.Column="4" Foreground="White" FontSize="15" />
+            </Grid>
+
+            <Grid Name="EPG_Programs_Channels" Height="135">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width=".6*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid Name="Channel1" Background="Navy" Grid.Column="0" Grid.Row="0" Margin="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="4*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Content="{Binding EPG_Data.Channel1_Name}" Foreground="White" Grid.Column="0" FontSize="15" />
+                    <Image Source="{Binding EPG_Data.Channel1_Image}" Height="42" Grid.Column="1"/>
+                </Grid>
+                <Grid Name="Channel2" Background="Navy" Grid.Column="0" Grid.Row="1"  Margin="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="4*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Content="{Binding EPG_Data.Channel2_Name}" Foreground="White" Grid.Column="0" FontSize="15" />
+                    <Image Source="{Binding EPG_Data.Channel2_Image}" Height="42" Grid.Column="1"/>
+                </Grid>
+                <Grid Name="Channel3" Background="Navy" Grid.Column="0" Grid.Row="2"  Margin="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="4*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Content="{Binding EPG_Data.Channel3_Name}" Foreground="White" Grid.Column="0" FontSize="15" />
+                    <Image Source="{Binding EPG_Data.Channel3_Image}" Height="42" Grid.Column="1"/>
+                </Grid>
+                <!--Grid.Row = Channel  Grid.Column = Program-->
+                <Border Name="Program1" BorderBrush="White" BorderThickness="{Binding EPG_Data.Program1_Border}" Margin="{Binding EPG_Data.Program1_Margin}" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="{Binding EPG_Data.Program1_ColSpan}" Panel.ZIndex="4">
+                    <Label Content="{Binding EPG_Data.Program1_Title}" Background="Navy" Foreground="White"  FontSize="15" />
+                </Border>
+                <Border Name="Program2" BorderBrush="White" BorderThickness="{Binding EPG_Data.Program2_Border}" Margin="{Binding EPG_Data.Program2_Margin}" Grid.Column="2" Grid.Row="0" Grid.ColumnSpan="{Binding EPG_Data.Program2_ColSpan}" Panel.ZIndex="3" >
+                    <Label Content="{Binding EPG_Data.Program2_Title}" Background="Navy" Foreground="White" FontSize="15" />
+                </Border>
+                <Border Name="Program3" BorderBrush="White" BorderThickness="{Binding EPG_Data.Program3_Border}" Margin="{Binding EPG_Data.Program3_Margin}" Grid.Column="3" Grid.Row="0" Grid.ColumnSpan="{Binding EPG_Data.Program3_ColSpan}" Panel.ZIndex="2" >
+                    <Label Content="{Binding EPG_Data.Program3_Title}" Background="Navy" Foreground="White" FontSize="15" />
+                </Border>
+                <Border Name="Program4" BorderBrush="White" BorderThickness="{Binding EPG_Data.Program4_Border}" Margin="{Binding EPG_Data.Program4_Margin}" Grid.Column="4" Grid.Row="0" Grid.ColumnSpan="{Binding EPG_Data.Program4_ColSpan}" Panel.ZIndex="1">
+                    <Label Content="{Binding EPG_Data.Program4_Title}" Background="Navy" Foreground="White"  FontSize="15" />
+                </Border>
+                <Border Name="Program5" BorderBrush="White" BorderThickness="{Binding EPG_Data.Program5_Border}" Margin="{Binding EPG_Data.Program5_Margin}" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="{Binding EPG_Data.Program5_ColSpan}" Panel.ZIndex="4" >
+                    <Label Content="{Binding EPG_Data.Program5_Title}" Background="Navy" Foreground="White" FontSize="15" />
+                </Border>
+                <Border Name="Program6" BorderBrush="White" BorderThickness="{Binding EPG_Data.Program6_Border}" Margin="{Binding EPG_Data.Program6_Margin}" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="{Binding EPG_Data.Program6_ColSpan}" Panel.ZIndex="3" >
+                    <Label Content="{Binding EPG_Data.Program6_Title}" Background="Navy" Foreground="White" FontSize="15" />
+                </Border>
+                <Border Name="Program7" BorderBrush="White" BorderThickness="{Binding EPG_Data.Program7_Border}" Margin="{Binding EPG_Data.Program7_Margin}" Grid.Column="3" Grid.Row="1" Grid.ColumnSpan="{Binding EPG_Data.Program7_ColSpan}" Panel.ZIndex="2" >
+                    <Label Content="{Binding EPG_Data.Program7_Title}" Background="Navy" Foreground="White" FontSize="15" />
+                </Border>
+                <Border Name="Program8" BorderBrush="White" BorderThickness="{Binding EPG_Data.Program8_Border}" Margin="{Binding EPG_Data.Program8_Margin}" Grid.Column="4" Grid.Row="1" Grid.ColumnSpan="{Binding EPG_Data.Program8_ColSpan}" Panel.ZIndex="1" >
+                    <Label Content="{Binding EPG_Data.Program8_Title}" Background="Navy" Foreground="White"  FontSize="15" />
+                </Border>
+                <Border Name="Program9" BorderBrush="White" BorderThickness="{Binding EPG_Data.Program9_Border}" Margin="{Binding EPG_Data.Program9_Margin}" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="{Binding EPG_Data.Program9_ColSpan}" Panel.ZIndex="4" >
+                    <Label Content="{Binding EPG_Data.Program9_Title}" Background="Navy" Foreground="White"  FontSize="15" />
+                </Border>
+                <Border Name="Program10" BorderBrush="White" BorderThickness="{Binding EPG_Data.Program10_Border}" Margin="{Binding EPG_Data.Program10_Margin}" Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="{Binding EPG_Data.Program10_ColSpan}" Panel.ZIndex="3" >
+                    <Label Content="{Binding EPG_Data.Program10_Title}" Background="Navy" Foreground="White"  FontSize="15" />
+                </Border>
+                <Border Name="Program11" BorderBrush="White" BorderThickness="{Binding EPG_Data.Program11_Border}" Margin="{Binding EPG_Data.Program11_Margin}" Grid.Column="3" Grid.Row="2" Grid.ColumnSpan="{Binding EPG_Data.Program11_ColSpan}" Panel.ZIndex="2">
+                    <Label Content="{Binding EPG_Data.Program11_Title}" Margin="{Binding EPG_Data.Program11_Margin}" Background="Navy" Foreground="White"  FontSize="15" />
+                </Border>
+                <Border Name="Program12" BorderBrush="White" BorderThickness="{Binding EPG_Data.Program12_Border}"  Margin="{Binding EPG_Data.Program12_Margin}" Grid.Column="4" Grid.Row="2" Grid.ColumnSpan="{Binding EPG_Data.Program12_ColSpan}" Panel.ZIndex="1">
+                    <Label Content="{Binding EPG_Data.Program12_Title}" Background="Navy" Foreground="White"  FontSize="15" />
+                </Border>
+            </Grid>
+
+            <Grid Name="EPG_SelectedProgram_Details" Height="110">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="30" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="4*" />
+                </Grid.ColumnDefinitions>
+
+                <Image Source="{Binding EPG_ItemImageSource, IsAsync=True}" Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" Stretch="Uniform"/>
+                <Label Content="{Binding EPG_Item.Title}" Grid.Column="1" Grid.Row="0" Foreground="White" FontSize="15"/>
+                <Label Content="{Binding EPG_Item.Description}" Grid.Column="1" Grid.Row="1" Foreground="White" FontSize="15"/>
+                <Label Content="{Binding EPG_Item.Times}" Grid.Column="1" Grid.Row="2" Foreground="White" FontSize="15"/>
+            </Grid>
+
+        </StackPanel>
+    </Grid>
+</UserControl>

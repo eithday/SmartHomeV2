@@ -18,6 +18,7 @@ namespace SmartHome.Movies.Models
     public string SmallCoverArt { get; set; }
     public string MediumCoverArt { get; set; }
     public string LargeCoverArt { get; set; }
+    public string BackDrop { get; set; }
     public string ParentCategory { get; set; }
     public List<string> Category { get; set; }
     public List<string> Cast { get; set; }
