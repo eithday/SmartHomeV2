@@ -13,7 +13,7 @@
         </Grid.Background>
         <StackPanel Orientation="Horizontal">
             <Label Content="{Binding CurrentWeatherData.City}" FontSize="40" Foreground="White"/>
-            <Label Content=", "  FontSize="40"/>
+            <Label Content=", "  FontSize="40" Foreground="White"/>
             <Label Content="{Binding CurrentWeatherData.Region}" FontSize="40" Foreground="White"/>
         </StackPanel>
         <DockPanel VerticalAlignment="Bottom" Margin="5,0,5,50" Height="300">

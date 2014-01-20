@@ -18,6 +18,7 @@ namespace SmartHome.Netflix.Models
     public string SmallCoverArt { get; set; }
     public string MediumCoverArt { get; set; }
     public string LargeCoverArt { get; set; }
+    public string HorizontalCoverArt { get; set; }
     public string HDBoxArt { get; set; }
     public string ParentCategory { get; set; }
     public List<string> Category { get; set; }

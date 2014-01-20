@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +24,12 @@ namespace SmartHome.YouTube.Views
     public YouTube_Tile()
     {
       InitializeComponent();
+      SetImageSources();
+    }
+
+    private void SetImageSources()
+    {
+      YoutubeImg.Source = new ImageSourceConverter().ConvertFromString(Directory.GetCurrentDirectory() + @"\Images\YouTube.png") as ImageSource; ;
     }
   }
 }

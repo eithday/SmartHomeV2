@@ -1,0 +1,15 @@
+38 	small vertical
+64 	small vertical
+88	small vertical
+110	small vertical
+124	medium vertical
+150	medium vertical
+166 	medium vertical
+176	medium vertical
+197 	medium vertical
+210	medium vertical
+265	alternate medium vertical
+285	large vertical
+350	large horizontal
+655	large horizontal
+1280 	x-large horizontal

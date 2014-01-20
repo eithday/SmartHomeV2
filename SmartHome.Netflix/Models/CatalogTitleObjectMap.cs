@@ -66,6 +66,9 @@ namespace SmartHome.Netflix.Models
               case "210pix width box art":
                 CT.LargeCoverArt = b.Attribute("href").Value;
                 break;
+              case "350pix width box art":
+                CT.HorizontalCoverArt = b.Attribute("href").Value;
+                break;
             }
           }
           break;

@@ -12,7 +12,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="385"/>
+            <RowDefinition Height="388"/>
         </Grid.RowDefinitions>
 
         <Wpf:VlcControl Name="localVlcControl" />
@@ -56,7 +56,7 @@
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="40"/>
-                                <RowDefinition Height="150"/>
+                                <RowDefinition Height="154"/>
                             </Grid.RowDefinitions>
                             <Label Content="{Binding Path=ParentCategory}" FontSize="20" Grid.Row="0" Foreground="White"/>
                             <ListView Name="MediaListView" Grid.Row="1" Focusable="True"  BorderThickness="0"
@@ -75,29 +75,18 @@
                                 </ItemsControl.ItemsPanel>
                                 <ItemsControl.ItemContainerStyle>
                                     <Style TargetType="ListViewItem">
-                                        <Style.Triggers>
-                                            <Trigger Property="IsSelected" Value="False">
-                                                <Setter Property="Control.RenderTransform">
-                                                    <Setter.Value>
-                                                        <ScaleTransform ScaleX="1" ScaleY="1"/>
-                                                    </Setter.Value>
-                                                </Setter>
-                                            </Trigger>
+                                        <Style.Triggers>                                            
                                             <Trigger Property="IsSelected" Value="True">
-                                                <Setter Property="Control.RenderTransform">
-                                                    <Setter.Value>
-                                                        <ScaleTransform  ScaleX="1.1" ScaleY="1.1"/>
-                                                    </Setter.Value>
-                                                </Setter>
-                                                <Setter Property="BorderThickness" Value="0"/>
-                                            </Trigger>
+                                            <Setter Property="Control.BorderThickness" Value="3"/>
+                                            <Setter Property="BorderBrush" Value="White"/>
+                                        </Trigger>
                                         </Style.Triggers>
                                         <Setter Property="Control.HorizontalAlignment" Value="Stretch"/>
                                         <Setter Property="Control.VerticalAlignment" Value="Stretch"/>
-                                        <Setter Property="Control.Width" Value="250"/>
+                                        <Setter Property="Control.Width" Value="300"/>
                                         <Setter Property="Control.Height" Value="150"/>
                                         <Setter Property="Control.Padding" Value="0"/>
-                                        <Setter Property="Control.Margin" Value="4,1,4,1"/>
+                                        <Setter Property="Control.Margin" Value="4"/>
                                         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
                                     </Style>
                                 </ItemsControl.ItemContainerStyle>

@@ -102,6 +102,7 @@ namespace SmartHome
       AppLauncherControl.Instance.AddApplication(new SmartHome.Control.Views.Control_Tile(), new SmartHome.Control.Views.Control_Content());
       AppLauncherControl.Instance.AddApplication(new SmartHome.Movies.Views.Movies_Tile(), new SmartHome.Movies.Views.Movies_Content());
       AppLauncherControl.Instance.AddApplication(new SmartHome.Netflix.Views.Netflix_Tile(), new SmartHome.Netflix.Views.Netflix_Content());
+      AppLauncherControl.Instance.AddApplication(new SmartHome.YouTube.Views.YouTube_Tile(), new SmartHome.YouTube.Views.YouTube_Content());
       AppLauncherControl.Instance.AddApplication(new SmartHome.Weather.Views.Weather_Tile(), new SmartHome.Weather.Views.Weather_Content());
 
       LoadedContent.Content = LoadedContentControl.Instance.LoadApplication(AppLauncherControl.AppContent[0]);

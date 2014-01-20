@@ -164,6 +164,10 @@
       <Project>{244fef9c-34b1-4929-8791-16c6c52d6c75}</Project>
       <Name>SmartHome.Weather</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SmartHome.YouTube\SmartHome.YouTube.csproj">
+      <Project>{08b9f7e0-1c5c-45b8-8f08-b8e0a73f1b66}</Project>
+      <Name>SmartHome.YouTube</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="accessInfo.xml">

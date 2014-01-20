@@ -70,7 +70,12 @@ namespace SmartHome.Control.ViewModels
 
     void timerReadPLC_Tick(object sender, EventArgs e)
     {
-      Status = MyCLX.ReadAny("HMI_BTN_OUT");
+      try
+      {
+        Status = MyCLX.ReadAny("HMI_BTN_OUT");
+      }
+      catch (Exception ex)
+      { }
     }
   }    
 }
