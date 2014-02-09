@@ -144,7 +144,7 @@ namespace SmartHome.Movies.ViewModels
 
     private void SetGenreList()
     {
-      string[] Genres = { "Action", "Comedy", "Family", "Sci-Fi & Fantasy", "Thriller" };
+      string[] Genres = { "Chad's List", "Randi's List", "Action", "Comedy", "Family", "Sci-Fi & Fantasy", "Thriller" };
       genreList = new List<string>(Genres);
     }
 
