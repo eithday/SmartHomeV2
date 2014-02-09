@@ -104,7 +104,7 @@ namespace SmartHome.TV.ViewModels
     private async void StartupControl()
     {
       //Connect to TV server (On Connect a timeshift is started automatically for quicker response: default channel 336 i.e. 2)
-      await Task.Run(() => TvClientV2.Connect("Local"));
+      await Task.Run(() => TvClientV2.Connect("HNHPD5"));
     }
 
     //ONCE TV CLIENT IS CONNECTED AND A CONFIRM TIMESHIFT STARTED MESSAGE FROM TVCLIENT.CONNECT() HAS BEEN RECEIVED
