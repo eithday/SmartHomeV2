@@ -127,7 +127,7 @@ namespace SmartHome.TV.Controls
     public async Task TuneActiveTimeShift()
     {
       string activeFile = TvClientV2.CurrentSession.VirtualCard.TimeShiftFileName.Substring(19);
-      string activeStream = @"\\HNHPD5\MP Timeshifting\" + activeFile;
+      string activeStream = @"\\localhost\MP Timeshifting\" + activeFile;
       TVSource = new Uri(activeStream);
       mediaElement1.Source = TVSource;
       mediaElement1.Play();
